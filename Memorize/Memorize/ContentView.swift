@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    var emojis = ["😗", "😡", "😐", "😝", "🤓", "😊", "😣", "😝", "☹️"]
-    @State var emojiCount = 3
+    var emojis = ["😗", "😡", "😐", "😝", "🤓", "😊", "😣", "A", "☹️", "B","C","D","E","F",]
+    @State var emojiCount = 6
     var body: some View {
         VStack {
-            HStack{
-                ForEach(emojis[0...emojiCount], id: \.self) { emoji in
-                    CardView(content: emoji)
+            ScrollView {
+                LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
+                    ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
+                        CardView(content: emoji)
+                            .aspectRatio(2/3, contentMode: .fit)
+                    }
                 }
             }
             Spacer()
@@ -32,19 +35,20 @@ struct ContentView: View {
     
     var add: some View {
         Button(action: {
-            emojiCount += 1
+            if(emojiCount < emojis.count) {emojiCount += 1}
         }, label: {
             Image(systemName: "plus.circle")
         })
+            .foregroundColor(.blue)
     }
     
     var remove: some View {
         Button(action: {
-            emojiCount -= 1
-            
+            if(emojiCount > 0) {emojiCount -= 1}
         }, label: {
             Image(systemName: "minus.circle")
         })
+            .foregroundColor(.blue)
     }
 }
 
