@@ -9,5 +9,17 @@
 import SwiftUI
 
 class EmojiMemoryGame {
-    private(set) var model: MemorizeGame<String>
+    static let emojis = ["😗", "😡", "😐", "😝", "🤓", "😊", "😣", "A", "☹️", "B","C","D","E","F",]
+    
+    static func createMemoryGame() -> MemorizeGame<String> {
+        MemorizeGame<String>(numberOfPairsOfCards: 4) { pairIndex in
+            EmojiMemoryGame.emojis[pairIndex]
+        }
+    }
+    
+    private var model: MemorizeGame<String> = EmojiMemoryGame.createMemoryGame()
+    
+    var cards: Array<MemorizeGame<String>.Card> {
+        return model.cards
+    }
 }

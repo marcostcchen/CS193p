@@ -9,8 +9,9 @@ import SwiftUI
 
 //View
 struct ContentView: View {
-    var emojis = ["😗", "😡", "😐", "😝", "🤓", "😊", "😣", "A", "☹️", "B","C","D","E","F",]
-    @State var emojiCount = 6
+    var viewModel: EmojiMemoryGame
+    
+    
     var body: some View {
         VStack {
             ScrollView {
@@ -53,7 +54,8 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let game = EmojiMemoryGame()
+        ContentView(viewModel: game)
             .preferredColorScheme(.light)
     }
 }
