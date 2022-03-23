@@ -8,7 +8,7 @@
 import Foundation
 //Model
 struct MemorizeGame<CardContent> {
-    var cards: Array<Card>
+    private(set) var cards: Array<Card>
     
     func choose(_ card: Card) {
         

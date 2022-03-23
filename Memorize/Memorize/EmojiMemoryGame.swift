@@ -20,6 +20,6 @@ class EmojiMemoryGame {
     private var model: MemorizeGame<String> = EmojiMemoryGame.createMemoryGame()
     
     var cards: Array<MemorizeGame<String>.Card> {
-        return model.cards
+        model.cards
     }
 }
