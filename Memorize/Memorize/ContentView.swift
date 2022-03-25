@@ -9,22 +9,19 @@ import SwiftUI
 
 //View
 struct ContentView: View {
-    var viewModel: EmojiMemoryGame
-    
+    @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        VStack {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
-                    ForEach(viewModel.cards, id: \.self.content) { card in
-                        CardView(card: card)
-                            .aspectRatio(2/3, contentMode: .fit)
-                    }
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
+                ForEach(viewModel.cards) { card in
+                    CardView(card: card)
+                        .aspectRatio(2/3, contentMode: .fit)
+                        .onTapGesture {
+                            viewModel.choose(card)
+                        }
                 }
             }
-            Spacer()
-            .padding(.horizontal)
-            .font(.largeTitle)
         }
         .padding(.horizontal)
         .foregroundColor(.red)
